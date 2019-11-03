@@ -32,6 +32,8 @@ function love.load()
         fullscreen = false,
         resizable = true
     })
+
+    love.keyboard.keysPressed = {}
 end
 
 
@@ -40,6 +42,8 @@ function love.update(dt)
     groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) % GROUND_LOOPING_POINT
 
     bird:update(dt)
+
+    love.keyboard.keysPressed = {}
 end
 
 function love.draw()
@@ -49,14 +53,25 @@ function love.draw()
     love.graphics.draw(ground, -groundScroll, VIRTUAL_HEIGHT - 16)
 
     bird:render()
+    
+    love.graphics.print('keys : '..tostring(love.keyboard.wasPressed('space')), 10, 40)
 
     push:finish()
 end
 
-
-function love.keyPressed(key)
+function love.keypressed(key)
+    love.keyboard.keysPressed[key] = true
+    
     if key == 'escape' then
         love.event.quit()
+    end
+end
+
+function love.keyboard.wasPressed(key)
+    if love.keyboard.keysPressed[key] then
+        return true
+    else
+        return false
     end
 end
 
