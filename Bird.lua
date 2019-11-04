@@ -25,5 +25,4 @@ end
 
 function Bird:render()
     love.graphics.draw(self.image, self.x, self.y)
-    love.graphics.print('bird dy : '..tostring(self.dy), 10, 10)
 end
