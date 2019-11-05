@@ -52,6 +52,18 @@ function love.load()
 
     math.randomseed(os.time())
 
+    sounds = {
+        ['jump'] = love.audio.newSource('jump.wav', 'static'),
+        ['explosion'] = love.audio.newSource('explosion.wav', 'static'),
+        ['hurt'] = love.audio.newSource('hurt.wav', 'static'),
+        ['score'] = love.audio.newSource('score.wav', 'static'),
+
+        ['music'] = love.audio.newSource('marios_way.mp3','static')
+    }
+
+    sounds['music']:setLooping(true)
+    sounds['music']:play()
+
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT,{
         vsync = true,
         fullscreen = false,
